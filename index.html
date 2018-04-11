@@ -24,12 +24,24 @@
     </x-tab>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> 
 <script>
+    let index = location.hash || '#0' //默认高亮第0个
+    index = index.substring(1)
+
+    $('x-tab > .nav > li').eq(index).addClass('active')
+        .siblings().removeClass('active')
+    $('x-tab > .content > li').eq(index).addClass('active')
+        .siblings().removeClass('active')
+
     $('x-tab').on(' click ', ' .nav > li ', (e) => {
         let $li = $(e.currentTarget)
         $li.addClass('active')
         .siblings().removeClass('active')
 
-        let index = $li.index()
+        // 点的是第几个tab
+        let index = $li.index() 
+        // 设置hash
+        location.hash = index
+
         $li.closest('x-tab').find(' .content > li ').eq(index)
             .addClass('active')
             .siblings().removeClass('active')
