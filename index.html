@@ -14,27 +14,33 @@
 <body>
     <x-tab>
         <ol class="nav">
-            <li><a href="#0">tab1</a></li>
-            <li><a href="#1">tab2</a></li>
+            <li><a href="./tab1">tab1</a></li>
+            <li><a href="./tab2">tab2</a></li>
         </ol>
         <ol class="content">
             <li>content1</li>
             <li>content2</li>
         </ol>
     </x-tab>
+    <a href="#top">回到顶部</a>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> 
 <script>
     selectTab()
-    window.onhashchange = function(){
+    $('x-tab').on('click', ' .nav > li > a', (e)=>{
+        e.preventDefault()
+        let a = e.currentTarget
+        let path = a.getAttribute('href')
+        window.history.pushState({}, 'xxx', path)
         selectTab()
-    }
+    })
 
     function selectTab(){
-        let index = location.hash || '#0' //默认高亮第0个
-        index = index.substring(1)
-        $('x-tab > .nav > li').eq(index).addClass('active')
+        let index = location.pathname.substring(1) || 'tab1' //默认tab1
+        index = index.substring(3)
+
+        $('x-tab > .nav > li').eq(index - 1).addClass('active')
             .siblings().removeClass('active')
-        $('x-tab > .content > li').eq(index).addClass('active')
+        $('x-tab > .content > li').eq(index - 1).addClass('active')
             .siblings().removeClass('active')       
     }
 </script>   
