@@ -34,7 +34,7 @@
 
 [History API实现路由切换](https://github.com/clydeqin7/router-demo/blob/e6ad4dd1b6dc0e51836227ea97df9b1728de54c5/index.html)
 
-通过 ```window.history.pushState```进行了路由切换，此时将如`www.xxx.com/tab1`的URL进行分享会有问题，还需要服务器对这个路劲进行处理。
+通过 ```window.history.pushState```进行了路由切换，此时将如`www.xxx.com/tab1`的URL进行分享会有问题，还需要服务器对这个路径进行处理。
 
 ```css
     <x-tab>
